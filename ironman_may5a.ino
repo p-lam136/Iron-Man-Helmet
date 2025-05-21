@@ -27,3 +27,7 @@ void setup() {
   serial.println("Begin ok!");
  
 }
+
+ int convert_degree (int degree) {
+    return map(degree, 0, 180, servo_MIN, servo_MAX);     // Converts angle to readable pulse length
+  }
