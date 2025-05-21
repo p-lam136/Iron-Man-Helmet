@@ -31,3 +31,15 @@ void setup() {
  int convert_degree (int degree) {
     return map(degree, 0, 180, servo_MIN, servo_MAX);     // Converts angle to readable pulse length
   }
+
+void loop() {
+
+  uint8_t CMDID = asr.getCMDID();
+
+  if CMDID > 0;
+  Serial.println(CMDID);
+
+  switch(CMDID) {
+    case 5:
+
+    case 6:
