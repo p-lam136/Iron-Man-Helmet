@@ -41,5 +41,70 @@ void loop() {
 
   switch(CMDID) {
     case 5:
+      // SIDE NOSE
+      serial.println("Opening nose sides")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CENTER NOSE
+      serial.println("Opening center nose")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CHEEKS
+      serial.println("Opening cheeks")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // SIDE EYEBROW
+      serial.println("Opening side eyebrows")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CENTER EYEBROW
+      serial.println("Opening center eyebrow")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      Serial.println("Mask opened")
+      break;
 
     case 6:
+      // SIDE NOSE
+      serial.println("Closing nose sides")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CENTER NOSE
+      serial.println("Closing center nose")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CHEEKS
+      serial.println("Closing cheeks")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // SIDE EYEBROW
+      serial.println("Closing side eyebrows")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      // CENTER EYEBROW
+      serial.println("Closing center eyebrow")
+      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
+      pwm.setpwm()
+      pwm.setpwm()
+
+      Serial.println("Mask closed")
+      break;
+
