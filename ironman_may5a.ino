@@ -7,6 +7,8 @@ DFRobot_DF2301Q_I2C asr;
 
 #define servo_MIN 150       // Minimum pulse length for servo (0 degrees)
 #define servo_MAX 450       // Maximum pulse length for servo (180 degrees)
+#define us_MIN 600
+#define us_MAX 2400
 #define servo_FREQ 50       // Servos run at ~50 Hz
 #define servo_COUNT 10      // Total number of servos
 
@@ -14,9 +16,8 @@ uint8_t servonum = 0;     // Servo counter
 
 void setup() {
   Serial.begin(115200);
-
   pwm.begin();
-  pwm.setPWMfreq(50);
+  pwm.setPWMFreq(50);
   delay(50);
 
   while (!(asr.begin())) {
@@ -24,87 +25,44 @@ void setup() {
     delay(3000);
   }
 
-  serial.println("Begin ok!");
- 
+  Serial.println("Begin ok!");
 }
 
  int convert_degree (int degree) {
     return map(degree, 0, 180, servo_MIN, servo_MAX);     // Converts angle to readable pulse length
-  }
+  }                                                       // Takes angle 0-180 and sends out pulselen between min and max
 
 void loop() {
 
   uint8_t CMDID = asr.getCMDID();
 
-  if CMDID > 0;
-  Serial.println(CMDID);
+  if (CMDID > 0) {
+    Serial.println(CMDID);
 
-  switch(CMDID) {
-    case 5:
-      // SIDE NOSE
-      serial.println("Opening nose sides")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
+      switch(CMDID) {
+        case 5:
+          // Wing Servos
+          Serial.println("Opening Wing Servos");
+          for (uint16_t pulselen = 154; pulselen < 399; pulselen += 3) {
+            pwm.setPWM(0, 0, pulselen);
+            pwm.setPWM(1, 0, (553-pulselen));
+            delay(10);
+          }
 
-      // CENTER NOSE
-      serial.println("Opening center nose")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
+          Serial.println("Mask opened");
+          break;
 
-      // CHEEKS
-      serial.println("Opening cheeks")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
+        case 6:
+          // Wing Servos
+          Serial.println("Closing Wing Servos");
+          for(uint16_t pulselen = 399; pulselen > 154 ; pulselen -= 3) {
+            pwm.setPWM(0, 0, pulselen);
+            pwm.setPWM(1, 0, (580-pulselen));
+            delay(10);
+          }
 
-      // SIDE EYEBROW
-      serial.println("Opening side eyebrows")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      // CENTER EYEBROW
-      serial.println("Opening center eyebrow")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      Serial.println("Mask opened")
-      break;
-
-    case 6:
-      // SIDE NOSE
-      serial.println("Closing nose sides")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      // CENTER NOSE
-      serial.println("Closing center nose")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      // CHEEKS
-      serial.println("Closing cheeks")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      // SIDE EYEBROW
-      serial.println("Closing side eyebrows")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      // CENTER EYEBROW
-      serial.println("Closing center eyebrow")
-      for(uint16_t pulselen = ; pulselen >= ; pulselen ))
-      pwm.setpwm()
-      pwm.setpwm()
-
-      Serial.println("Mask closed")
-      break;
-
+          Serial.println("Mask closed");
+          break;
+      }
+    }
+  }
