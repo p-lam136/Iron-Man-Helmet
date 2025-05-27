@@ -5,7 +5,6 @@
 #define servo_MIN 150       // Minimum pulse length for servo (0 degrees)
 #define servo_MAX 450       // Maximum pulse length for servo (180 degrees)
 #define servo_FREQ 50       // Servos run at ~50 Hz
-#define servo_COUNT 10      // Total number of servos
 
 uint8_t servonum = 0;     // Servo counter
 
@@ -51,16 +50,6 @@ void loop() {
   switch(CMDID) {
       case 5:
 
-        // NOSE Sides
-        Serial.println("Opening Nose Sides");
-        for (uint16_t pulselen = 86; pulselen >= 10; pulselen--) {
-          pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
-          pwm.setPWM(9, 0, convert_degree(pulselen));
-        }
-          
-        Serial.println("Nose Sides Opened");
-
-
         //BROW Center
         Serial.println("Opening Brow Center");
         for (uint16_t pulselen = 120; pulselen >= 40; pulselen--) {
@@ -75,13 +64,6 @@ void loop() {
           pwm.setPWM(3, 0, convert_degree(30 + 90 - pulselen));
         }
         Serial.println("Brow Side Opened");
-
-        // NOSE Center
-        Serial.println("Opening Nose Center");
-        for (uint16_t pulselen = 110; pulselen >= 1; pulselen--) {
-        pwm.setPWM(5, 0, convert_degree(pulselen));
-      }
-        Serial.println("Nose center opened");
 
         // Wing Servos
         Serial.println("Opening Wing Servos");
@@ -110,6 +92,7 @@ void loop() {
           pwm.setPWM(5, 0, convert_degree(pulselen));
         }
         Serial.println("Nose Center Closed");
+
         // BROW Sides
         Serial.println("Closing Brow Sides");
         for (uint16_t pulselen = 90; pulselen >= 30; pulselen--) {
@@ -125,16 +108,7 @@ void loop() {
         }
         Serial.println("Brow Center Closed");
 
-        // NOSE Sides
-        Serial.println("Closing Nose Sides");
-        for (uint16_t pulselen = 10; pulselen <= 86; pulselen++) {
-        pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
-        pwm.setPWM(9, 0, convert_degree(pulselen));
-        }
-
-        Serial.println("Nose Sides Opened");
         Serial.println("Mask Closed");
-
         break;
 
     
