@@ -87,6 +87,10 @@ void loop() {
         }
         Serial.println("Nose center opened");
 
+        // EYES
+        analogWrite(6, 0);
+        Serial.println("LED OFF");
+
         // Wing Servos
         Serial.println("Opening Wing Servos");
         for (uint16_t pulselen = 154; pulselen < 399; pulselen += 3) {
@@ -145,6 +149,10 @@ void loop() {
           pwm.setPWM(13, 0, convert_degree(90 + 20 - pulselen));
         }
         Serial.println("Cheeks Closed");
+
+        // EYES
+        analogWrite(6, 200);
+        Serial.println("LED ON");
 
         Serial.println("Mask Closed");
         break;
