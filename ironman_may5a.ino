@@ -50,12 +50,13 @@ void loop() {
   switch(CMDID) {
       case 5:
 
-        //BROW Center
-        Serial.println("Opening Brow Center");
-        for (uint16_t pulselen = 120; pulselen >= 40; pulselen--) {
-          pwm.setPWM(4, 0, convert_degree(pulselen));
+        // NOSE Sides
+        Serial.println("Opening Nose Sides");
+        for (uint16_t pulselen = 86; pulselen >= 10; pulselen--) {
+          pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
+          pwm.setPWM(9, 0, convert_degree(pulselen));
         }
-        Serial.println("Brow Center Opened");
+        Serial.println("Nose Sides Opened");
 
         // BROW Side
         Serial.println("Opening Brow Sides");
@@ -64,6 +65,13 @@ void loop() {
           pwm.setPWM(3, 0, convert_degree(30 + 90 - pulselen));
         }
         Serial.println("Brow Side Opened");
+
+        // NOSE Center
+        Serial.println("Opening Nose Center");
+        for (uint16_t pulselen = 110; pulselen >= 1; pulselen--) {
+          pwm.setPWM(5, 0, convert_degree(pulselen));
+        }
+        Serial.println("Nose center opened");
 
         // Wing Servos
         Serial.println("Opening Wing Servos");
@@ -107,6 +115,14 @@ void loop() {
           pwm.setPWM(4, 0, convert_degree(pulselen));
         }
         Serial.println("Brow Center Closed");
+
+        // NOSE Sides
+        Serial.println("Closing Nose Sides");
+        for (uint16_t pulselen = 10; pulselen <= 86; pulselen++) {
+          pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
+          pwm.setPWM(9, 0, convert_degree(pulselen));
+        }
+        Serial.println("Nose Sides Closed");
 
         Serial.println("Mask Closed");
         break;
