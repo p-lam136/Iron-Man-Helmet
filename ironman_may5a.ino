@@ -39,7 +39,6 @@ void setup() {
     return map(degree, 0, 180, servo_MIN, servo_MAX);     // Converts angle to readable pulse length
   }
 
-
 void loop() {
   uint8_t CMDID = asr.getCMDID();
 
@@ -60,8 +59,8 @@ void loop() {
         // NOSE Sides
         Serial.println("Opening Nose Sides");
         for (uint16_t pulselen = 86; pulselen >= 10; pulselen--) {
-          pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
-          pwm.setPWM(9, 0, convert_degree(pulselen));
+          pwm.setPWM(14, 0, convert_degree(86 + 10 - pulselen));
+          pwm.setPWM(15, 0, convert_degree(pulselen));
         }
         Serial.println("Nose Sides Opened");
 
@@ -137,8 +136,8 @@ void loop() {
         // NOSE Sides
         Serial.println("Closing Nose Sides");
         for (uint16_t pulselen = 10; pulselen <= 86; pulselen++) {
-          pwm.setPWM(8, 0, convert_degree(86 + 10 - pulselen));
-          pwm.setPWM(9, 0, convert_degree(pulselen));
+          pwm.setPWM(14, 0, convert_degree(86 + 10 - pulselen));
+          pwm.setPWM(15, 0, convert_degree(pulselen));
         }
         Serial.println("Nose Sides Closed");
 
