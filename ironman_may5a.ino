@@ -150,7 +150,7 @@ void loop() {
         Serial.println("Cheeks Closed");
 
         // EYES
-        analogWrite(6, 200);
+        analogWrite(6, 255);
         Serial.println("LED ON");
 
         Serial.println("Mask Closed");
