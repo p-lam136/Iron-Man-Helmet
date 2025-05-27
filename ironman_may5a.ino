@@ -49,6 +49,13 @@ void loop() {
 
   switch(CMDID) {
       case 5:
+        // CHEEKS
+        Serial.println("Cheeks Opening");
+        for (uint16_t pulselen = 90; pulselen >= 20; pulselen--) {
+          pwm.setPWM(12, 0, convert_degree(pulselen));
+          pwm.setPWM(13, 0, convert_degree(90 + 20 - pulselen));
+        }
+        Serial.println("Cheeks Opened");
 
         // NOSE Sides
         Serial.println("Opening Nose Sides");
@@ -57,6 +64,13 @@ void loop() {
           pwm.setPWM(9, 0, convert_degree(pulselen));
         }
         Serial.println("Nose Sides Opened");
+
+        //BROW Center
+        Serial.println("Opening Brow Center");
+        for (uint16_t pulselen = 120; pulselen >= 40; pulselen--) {
+          pwm.setPWM(4, 0, convert_degree(pulselen));
+        }
+        Serial.println("Brow Center Opened");
 
         // BROW Side
         Serial.println("Opening Brow Sides");
@@ -123,6 +137,14 @@ void loop() {
           pwm.setPWM(9, 0, convert_degree(pulselen));
         }
         Serial.println("Nose Sides Closed");
+
+        // CHEEKS
+        Serial.println("Cheeks Closing");
+        for (uint16_t pulselen = 20; pulselen <= 90; pulselen++) {
+          pwm.setPWM(12, 0, convert_degree(pulselen));
+          pwm.setPWM(13, 0, convert_degree(90 + 20 - pulselen));
+        }
+        Serial.println("Cheeks Closed");
 
         Serial.println("Mask Closed");
         break;
